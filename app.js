@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-const cors = require("cors");
+// const cors = require("cors");
 
 const app = express();
 
@@ -23,19 +23,22 @@ async function connect() {
   }
 }
 
-app.use(
-  cors({
-    origin: "https://angular-lovat-ten.vercel.app",
-  })
-);
+// app.use(
+//   cors({
+//     origin: "https://angular-lovat-ten.vercel.app",
+//   })
+// );
 
 // Enable CORS middleware
-// app.use((req, res, next) => {
-//   res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
-//   res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-//   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-//   next();
-// });
+app.use((req, res, next) => {
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://angular-lovat-ten.vercel.app"
+  );
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  next();
+});
 
 connect();
 const routes = require("./routes");
