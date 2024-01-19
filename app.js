@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+const cors = require("cors");
 
 const app = express();
 
@@ -15,7 +16,6 @@ console.log(process.env.DB_URL);
 
 async function connect() {
   try {
-    // await mongoose.connect("mongodb://127.0.0.1:27017/nodejs");
     await mongoose.connect(DB_URL);
     console.log("Connect successfully!!!");
   } catch (error) {
@@ -23,13 +23,19 @@ async function connect() {
   }
 }
 
+app.use(
+  cors({
+    origin: "https://angular-lovat-ten.vercel.app",
+  })
+);
+
 // Enable CORS middleware
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  next();
-});
+// app.use((req, res, next) => {
+//   res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
+//   res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+//   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+//   next();
+// });
 
 connect();
 const routes = require("./routes");
