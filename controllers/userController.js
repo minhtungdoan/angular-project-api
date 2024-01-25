@@ -8,6 +8,24 @@ dotenv.config();
 const { secretCode } = process.env;
 
 class userController {
+  async getAllUsers(req, res) {
+    try {
+      const users = await User.find();
+      res.json(users);
+    } catch (error) {
+      return res.status(400).json({ message: error.message });
+    }
+  }
+
+  async getUserDetail(req, res) {
+    try {
+      const user = await User.findById(req.params.id);
+      res.json(user);
+    } catch (error) {
+      return res.status(400).json({ message: error.message });
+    }
+  }
+
   async userRegister(req, res) {
     try {
       const { fullname, age, email, password } = req.body;

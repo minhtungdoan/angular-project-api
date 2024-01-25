@@ -18,7 +18,18 @@ const validateLaptop = Joi.object({
   price: Joi.number().required(),
   description: Joi.string().required(),
   image: Joi.string().required(),
-  brand: Joi.string().required(),
+  // brand: Joi.string().required(),
+  category: Joi.string().required(),
 });
 
-module.exports = { validateLaptop, validateLogin, validateRegister };
+const validateCategory = Joi.object({
+  name: Joi.string().required(),
+  description: Joi.string().required(),
+});
+
+module.exports = {
+  validateLaptop,
+  validateLogin,
+  validateRegister,
+  validateCategory,
+};

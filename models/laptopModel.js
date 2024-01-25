@@ -7,7 +7,7 @@ const Laptop = new Schema(
     price: { type: Number, required: true },
     description: { type: String, required: true },
     image: { type: String, required: true },
-    brand: { type: String, required: true },
+    category: { type: Schema.Types.ObjectId, ref: "Category" },
   },
   { timestamps: true }
 );

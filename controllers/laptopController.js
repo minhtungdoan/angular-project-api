@@ -31,7 +31,7 @@ class laptopController {
       await Laptop.create(req.body);
       res.status(200).json({ message: "ok" });
     } catch (error) {
-      return res.status(400).error({ message: error.message });
+      return res.status(400).json({ message: error.message });
     }
   }
 
