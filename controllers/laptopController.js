@@ -4,7 +4,7 @@ const { validateLaptop } = require("../validations");
 class laptopController {
   async getAllLaptops(req, res) {
     try {
-      const laptops = await Laptop.find();
+      const laptops = await Laptop.find().populate("category");
       res.json(laptops);
     } catch (error) {
       return res.status(400).error({ message: error.message });
