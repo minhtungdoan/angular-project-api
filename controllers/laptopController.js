@@ -13,7 +13,7 @@ class laptopController {
 
   async getLaptopDetail(req, res) {
     try {
-      const laptop = await Laptop.findById(req.params.id);
+      const laptop = await Laptop.findById(req.params.id).populate("category");
       res.json(laptop);
     } catch (error) {
       return res.status(400).error({ message: error.message });
