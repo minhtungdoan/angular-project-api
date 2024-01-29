@@ -23,12 +23,6 @@ async function connect() {
   }
 }
 
-// app.use(
-//   cors({
-//     origin: "https://angular-lovat-ten.vercel.app",
-//   })
-// );
-
 // Enable CORS middleware
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
