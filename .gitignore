@@ -3,3 +3,4 @@ node_modules
 .env.atlas
 fake-data.ts
 util.ts
+tsconfig.json
