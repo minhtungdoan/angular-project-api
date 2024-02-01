@@ -7,7 +7,7 @@ class laptopController {
       const laptops = await Laptop.find().populate("category");
       res.json(laptops);
     } catch (error) {
-      return res.status(400).error({ message: error.message });
+      return res.status(400).json({ message: error.message });
     }
   }
 
@@ -16,7 +16,7 @@ class laptopController {
       const laptop = await Laptop.findById(req.params.id).populate("category");
       res.json(laptop);
     } catch (error) {
-      return res.status(400).error({ message: error.message });
+      return res.status(400).json({ message: error.message });
     }
   }
 
@@ -40,7 +40,7 @@ class laptopController {
       await Laptop.updateOne({ _id: req.params.id }, req.body);
       res.status(200).json({ message: "ok" });
     } catch (error) {
-      return res.status(400).error({ message: error.message });
+      return res.status(400).json({ message: error.message });
     }
   }
 
@@ -49,7 +49,7 @@ class laptopController {
       await Laptop.deleteOne({ _id: req.params.id });
       res.status(200).json({ message: "ok" });
     } catch (error) {
-      return res.status(400).error({ message: error.message });
+      return res.status(400).json({ message: error.message });
     }
   }
 }

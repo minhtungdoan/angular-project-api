@@ -28,7 +28,7 @@ class userController {
 
   async userRegister(req, res) {
     try {
-      const { fullname, age, email, password } = req.body;
+      const { fullName, email, password } = req.body;
 
       const { error } = validateRegister.validate(req.body, {
         abortEarly: false,
@@ -47,8 +47,7 @@ class userController {
       const hashPassword = await bcrypjt.hash(password, 10);
 
       await User.create({
-        fullname,
-        age,
+        fullName,
         email,
         password: hashPassword,
       });

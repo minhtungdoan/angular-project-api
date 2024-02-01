@@ -2,8 +2,7 @@
 const Joi = require("joi");
 
 const validateRegister = Joi.object({
-  fullname: Joi.string().required(),
-  age: Joi.number().required(),
+  fullName: Joi.string().required(),
   email: Joi.string().email().required(),
   password: Joi.string().required(),
 });
