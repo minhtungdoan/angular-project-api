@@ -4,6 +4,7 @@ const router = express.Router();
 const laptopController = require("../controllers/laptopController");
 const { checkPermission } = require("../middlewares");
 
+router.get("/filterByCategories", laptopController.filterByCategories);
 router.get("/:id", laptopController.getLaptopDetail);
 router.get("/", laptopController.getAllLaptops);
 router.post("/", laptopController.createLaptop);

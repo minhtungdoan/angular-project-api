@@ -52,6 +52,17 @@ class laptopController {
       return res.status(400).json({ message: error.message });
     }
   }
+
+  async filterByCategories(req, res) {
+    try {
+      const laptops = await Laptop.find({
+        category: { $in: req.query.query.split(",") },
+      }).populate("category");
+      res.json(laptops);
+    } catch (error) {
+      return res.status(400).json({ message: error.message });
+    }
+  }
 }
 
 module.exports = new laptopController();
