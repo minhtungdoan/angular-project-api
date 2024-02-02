@@ -17,9 +17,6 @@ class SearchController {
             },
           },
         },
-        {
-          $limit: 6,
-        },
       ]);
       res.status(200).json(result);
     } catch (error) {
@@ -43,9 +40,7 @@ class SearchController {
             },
           },
         },
-        {
-          $limit: 10,
-        },
+
         {
           $project: {
             fullName: 1,
@@ -91,9 +86,6 @@ class SearchController {
           },
         },
         /* Trong đoạn mã trên, $unwind sẽ "giải nén" mảng category và chuyển đổi mỗi phần tử của mảng thành một đối tượng riêng biệt. preserveNullAndEmptyArrays: true sẽ đảm bảo rằng nếu mảng category rỗng hoặc không tồn tại, thì đối tượng Laptop vẫn sẽ được giữ lại trong kết quả. */
-        {
-          $limit: 6,
-        },
       ]);
       res.status(200).json(result);
     } catch (error) {
