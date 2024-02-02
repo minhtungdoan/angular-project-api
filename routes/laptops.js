@@ -2,8 +2,10 @@ const express = require("express");
 const router = express.Router();
 
 const laptopController = require("../controllers/laptopController");
+const searchController = require("../controllers/searchController");
 const { checkPermission } = require("../middlewares");
 
+router.get("/search", searchController.searchLaptop);
 router.get("/filterByCategories", laptopController.filterByCategories);
 router.get("/:id", laptopController.getLaptopDetail);
 router.get("/", laptopController.getAllLaptops);

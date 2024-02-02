@@ -1,7 +1,8 @@
 const User = require("../models/userModel");
+const Laptop = require("../models/laptopModel");
 
 class SearchController {
-  async search(req, res) {
+  async searchUser(req, res) {
     try {
       const result = await User.aggregate([
         {
@@ -26,7 +27,7 @@ class SearchController {
     }
   }
 
-  async autocomplete(req, res) {
+  async autocompleteUser(req, res) {
     try {
       const result = await User.aggregate([
         {
@@ -52,6 +53,31 @@ class SearchController {
               $meta: "searchHighlights",
             },
           },
+        },
+      ]);
+      res.status(200).json(result);
+    } catch (error) {
+      res.status(400).json({ message: error.message });
+    }
+  }
+
+  async searchLaptop(req, res) {
+    try {
+      const result = await Laptop.aggregate([
+        {
+          $search: {
+            index: "laptops_search",
+            text: {
+              query: req.query.search,
+              path: {
+                wildcard: "*",
+              },
+              fuzzy: {},
+            },
+          },
+        },
+        {
+          $limit: 6,
         },
       ]);
       res.status(200).json(result);
