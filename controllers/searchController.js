@@ -77,6 +77,14 @@ class SearchController {
           },
         },
         {
+          $lookup: {
+            from: "categories",
+            localField: "category",
+            foreignField: "_id",
+            as: "category",
+          },
+        },
+        {
           $limit: 6,
         },
       ]);
