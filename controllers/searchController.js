@@ -40,7 +40,9 @@ class SearchController {
             },
           },
         },
-
+        {
+          $limit: 10,
+        },
         {
           $project: {
             fullName: 1,
@@ -83,6 +85,23 @@ class SearchController {
           $unwind: {
             path: "$category",
             preserveNullAndEmptyArrays: true,
+          },
+        },
+        {
+          $project: {
+            score: { $meta: "searchScore" },
+            _id: 0,
+            name: 1,
+            description: 1,
+            image: 1,
+            category: 1,
+            createdAt: 1,
+            updatedAt: 1,
+          },
+        },
+        {
+          $match: {
+            score: { $gt: 1 },
           },
         },
         /* Trong đoạn mã trên, $unwind sẽ "giải nén" mảng category và chuyển đổi mỗi phần tử của mảng thành một đối tượng riêng biệt. preserveNullAndEmptyArrays: true sẽ đảm bảo rằng nếu mảng category rỗng hoặc không tồn tại, thì đối tượng Laptop vẫn sẽ được giữ lại trong kết quả. */
