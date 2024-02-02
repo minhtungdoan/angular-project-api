@@ -90,11 +90,12 @@ class SearchController {
         {
           $project: {
             score: { $meta: "searchScore" },
-            _id: 0,
+            _id: 1,
             name: 1,
             description: 1,
             image: 1,
             category: 1,
+            price: 1,
             createdAt: 1,
             updatedAt: 1,
           },
